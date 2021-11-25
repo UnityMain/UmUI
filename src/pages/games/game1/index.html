@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h3>猜数字游戏</h3>
+		<input type="number" id="da" maxlength="4" placeholder="请输入4位数字"/>
+		<input type="button" onclick="demo()" value="确定" />
+		<div id="tishi"></div>
+		<script>
+			var str = [];
+			window.onload = function(){
+				var arr = [1,2,3,4,5,6,7,8,9,0]
+				for(var i=0;i<4;i++){
+					var count = Math.floor(Math.random()*arr.length);
+					str.push(arr[count]);
+					arr.splice(count,1);
+				}
+			}
+			function demo(){
+				var value = document.getElementById("da").value;
+				if(value.length!=4){
+					document.getElementById("tishi").innerHTML = "请输入正确的四位数字";
+					return;
+				}
+				var arr = value.split("");
+				var T = 0;
+				var F = 0;
+				for(var i=0;i<arr.length;i++){
+					if(arr[i]==str[i]){
+						T++;
+						continue;
+					}
+					if(str.indexOf(parseInt(arr[i]))!=-1){
+						F++;
+					}
+				}
+				if(T==4){
+					document.getElementById("tishi").innerHTML = "恭喜你，回答正确，正确的数字就是："+str.toString();
+				}else{
+					document.getElementById("tishi").innerHTML = T+"T"+F+"F"+"\n"+
+					"有"+T+"个数字正确且位置正常"+"\n"+
+					"有"+F+"个数字正确但位置错误";
+				}
+				
+			}
+		</script>
+	</body>
+</html>

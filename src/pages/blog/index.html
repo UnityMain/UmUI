@@ -1,0 +1,182 @@
+<html>
+<!--定时器-->
+<script>
+    function init(){
+        //书写轮播图片的定时功能
+        setInterval("changeImg()",3000);
+    }
+    //书写函数
+    var i=0;
+    function changeImg(){
+        i++;
+        //获取图片位置并设置src属性值
+        document.getElementById("img1").src=i+".jpg";
+        if(i==5){
+            i=0;
+        }
+    }
+</script>
+
+</head>
+
+<!--标题栏-->
+<body onload="init()">
+<table width="1200px" align="center" cellpadding="0px" cellspacing="0px">
+    <tr>
+        <td>
+            <table border="0px" width="1400px">
+                <tr height="50px">
+                    <td width="100%" align="center">
+                        <a href="#" > <font color="black" size="7" face="comic sans ms" >
+                            <strong>配角之路游戏介绍</strong>
+                        </font></a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+
+<table width="1200px" align="center"  cellpadding="2px" cellspacing="2px">
+    <!--轮播图-->
+    <tr>
+        <td>
+            <img src="1.jpg" width="100%"  id="img1"/>
+        </td>
+    </tr>
+</table><br /><br />
+
+<!--home段-->
+<table width="1400px" cellspacing="2px" cellpadding="2px" align="center">
+    <tr><th><font face="comic sans ms" size="6"><strong>HOME</strong></font></th></tr><br /><br />
+    <tr>
+        <td align="center">
+            <p align="center" ><font size="3" face="楷体">
+                五大地形：山地，丘陵，高原，平原，盆地
+            </font></p>
+            <br /><br />
+            <img src="C.png"/><br /><br />
+        </td>
+    </tr>
+</table>
+
+<!--做一个两行三列的表格-->
+<table width="1400px" cellpadding="2px" cellspacing="2px" align="center">
+    <tr align="center">
+        <td width="450px" height="500px">
+            <img src="4.png" />
+            <font size="3" face="微软雅黑" ><strong>伟大的渺小</strong></font><br />
+            <font size="2" color="gray">一朵玫瑰被刺围绕，也许它也渴望拥抱</font>
+        </td>
+        <td>
+            <img src="5.png" />
+            <font size="3" face="微软雅黑" ><strong>伟大的渺小</strong></font><br />
+            <font size="2" color="gray">一朵玫瑰被刺围绕，也许它也渴望拥抱</font>
+        </td>
+        <td>
+            <img src="6.png" />
+            <font size="3" face="微软雅黑" ><strong>伟大的渺小</strong></font><br />
+            <font size="2" color="gray">一朵玫瑰被刺围绕，也许它也渴望拥抱</font>
+        </td>
+    </tr>
+    <tr align="center">
+        <td>
+            <img src="1.png" />
+            <font size="3" face="微软雅黑" ><strong>伟大的渺小</strong></font><br />
+            <font size="2" color="gray">一朵玫瑰被刺围绕，也许它也渴望拥抱</font>
+        </td>
+        <td>
+            <img src="2.png" />
+            <font size="3" face="微软雅黑" ><strong>伟大的渺小</strong></font><br />
+            <font size="2" color="gray">一朵玫瑰被刺围绕，也许它也渴望拥抱</font>
+        </td>
+        <td>
+            <img src="3.png" />
+            <font size="3" face="微软雅黑" ><strong>伟大的渺小</strong></font><br />
+            <font size="2" color="gray">一朵玫瑰被刺围绕，也许它也渴望拥抱</font>
+        </td>
+    </tr>
+</table><br /><br />
+
+<!--About Me段-->
+<table width="1400px" cellspacing="2px" cellpadding="2px" align="center">
+    <tr align="center">
+        <td>
+            <font face="comic sans ms" size="6"><strong>About Me</strong></font><br />
+        </td>
+    </tr>
+</table>
+
+<table width="1400px" cellspacing="2px" cellpadding="6px" align="center">
+    <tr>
+        <td align="center">
+            <p align="center" ><font size="3" face="楷体">这首歌也与新加坡作词人小寒首度合作，在没有给予任何想法下，小寒一听到这首旋律，自然而然产生强烈的共鸣与感动，来自对生命与灵魂的感受，赋予了这首歌珍贵呼应的歌词。[4]  而这首歌更与知名配唱制作人马毓芬老师一同录制，她与林俊杰针对这首歌所想表达的情绪深入畅聊，如何随着这首歌的旋律铺陈，以及在录制的情感表现，例如试着让林俊杰在第一次副歌用假音表现他原本可以轻松用真音唱上去的旋律，在听觉上让前半部听起来较为柔和，并针对最后一次副歌特别编写和声，传达一种磅礴而震撼的感觉，让后半部更显张力与希望。</font></p>
+        </td>
+        <td align="center">
+            <p align="center" ><font size="3" face="楷体">这首歌也与新加坡作词人小寒首度合作，在没有给予任何想法下，小寒一听到这首旋律，自然而然产生强烈的共鸣与感动，来自对生命与灵魂的感受，赋予了这首歌珍贵呼应的歌词。[4]  而这首歌更与知名配唱制作人马毓芬老师一同录制，她与林俊杰针对这首歌所想表达的情绪深入畅聊，如何随着这首歌的旋律铺陈，以及在录制的情感表现，例如试着让林俊杰在第一次副歌用假音表现他原本可以轻松用真音唱上去的旋律，在听觉上让前半部听起来较为柔和，并针对最后一次副歌特别编写和声，传达一种磅礴而震撼的感觉，让后半部更显张力与希望。</font></p>
+        </td>
+    </tr>
+</table>
+
+<table width="1000px" cellpadding="2px" cellspacing="2px" align="center">
+    <tr>
+        <td>
+            <p align="center" ><font size="5" face="楷体"><strong>试着让林俊杰在第一次副歌用假音表现他原本可以轻松用真音唱上去的旋律，在听觉上让前半部听起来较为柔和，并针对最后一次副歌特别编写和声，传达一种磅礴而震撼的感觉，让后半部更显张力与希望。</strong></font></p>
+        </td>
+    </tr>
+</table><br />
+
+<table width="1400px" cellpadding="0px" cellspacing="0px" align="center">
+    <tr>
+        <td>
+            <img src="121.jpg" width="700px" height="700px" align="center"/>
+        </td>
+        <td>
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <!--等着，我回来再写-->
+        </td>
+        <td>
+            <img src="9.jpg" width="700px" height="700px" align="center"/>
+        </td>               
+    </tr>       
+</table><br /><br />
+
+<!--My life段-->
+<table width="1400px" cellspacing="2px" cellpadding="2px" align="center">
+    <tr align="center">
+        <td>
+            <font face="comic sans ms" size="6"><strong>My life</strong></font><br />
+        </td>
+    </tr>
+</table>
+
+<table width="1400px" cellspacing="2px" cellpadding="2px" align="center">
+    <tr>
+        <td align="center">
+            <p align="center" ><font size="3" face="楷体">这首歌也与新加坡作词人小寒首度合作，在没有给予任何想法下，小寒一听到这首旋律，自然而然产生强烈的共鸣与感动，来自对生命与灵魂的感受，赋予了这首歌珍贵呼应的歌词。[4]  而这首歌更与知名配唱制作人马毓芬老师一同录制，她与林俊杰针对这首歌所想表达的情绪深入畅聊，如何随着这首歌的旋律铺陈，以及在录制的情感表现，例如试着让林俊杰在第一次副歌用假音表现他原本可以轻松用真音唱上去的旋律，在听觉上让前半部听起来较为柔和，并针对最后一次副歌特别编写和声，传达一种磅礴而震撼的感觉，让后半部更显张力与希望。</font></p>
+        </td>
+    </tr>
+</table>
+<table width="700px" cellspacing="2px" cellpadding="2px" align="center">
+    <tr>
+        <td align="center">
+
+        </td>
+    </tr>
+</table>
+<table width="1400px"  height="300px" bgcolor="black" cellpadding="6px" align="center">
+    <tr>
+        <td align="center">
+            <p align="center" ><font size="7" face="comic sans ms" color="white">BLUEHEART</font></p><br /><br /><br />
+            <p align="center" ><font size="4" face="comic sans ms" color="white">Hope my CET4 能过！！</font></p>
+            <p align="center" ><font color="white">Copyright © 2017 个人网站. All rights reserved.</font></p>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)http://www.unitymain.top/game2.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title></title>
+	</head>
+	<body>
+		<div style="text-align: center;
+			position: absolute;  
+	        width:300px;  
+	        height:50px;  
+	        left:50%;  
+	        top:50%;
+	        margin-left:-200px;  
+        	margin-top:-25px;    ">
+			<h1 id="content">我是游戏</h1>
+		</div>
+		
+		<script>
+			/**var map = [
+					[' ',' ','#','#','#',' ',' ',' '],
+					[' ',' ','#','x','#',' ',' ',' '],
+					[' ',' ','#',' ','#','#','#','#'],
+					['#','#','#','0',' ','0','x','#'],
+					['#','x',' ','0','&','#','#','#'],
+					['#','#','#','#','0','#',' ',' '],
+					[' ',' ',' ','#','x','#',' ',' '],
+					[' ',' ',' ','#','#','#',' ',' ']
+				];**/
+				var map = [
+					[' ',' ',' ','#','#','#','#','#','#',' '],
+					[' ','#','#','#',' ',' ',' ',' ','#',' '],
+					['#','#','x',' ','0','#','#',' ','#','#'],
+					['#','x','x','0',' ','0',' ',' ','&','#'],
+					['#','x','x',' ','0',' ','0',' ','#','#'],
+					['#','#','#','#','#','#',' ',' ','#',' '],
+					[' ',' ',' ',' ','#','#','#','#','#',' ']
+				];
+//var  map  =  [
+//			['  ','  ','墙','墙','墙','  ','  ','  '],
+//			['  ','  ','墙','囚','墙','  ','  ','  '],
+//			['  ','  ','墙','  ','墙','墙','墙','墙'],
+//			['墙','墙','墙','箱','  ','箱','囚','墙'],
+//			['墙','囚','  ','箱','人','墙','墙','墙'],
+//			['墙','墙','墙','墙','箱','墙','  ','  '],
+//			['  ','  ','  ','墙','囚','墙','  ','  '],
+//			['  ','  ','  ','墙','墙','墙','  ','  ']
+//		];
+			var ps = {
+				x:0,
+				y:0
+			}
+			var zd = [];
+			var mp = {
+				wall : "#",
+				way : " ",
+				person : "&",
+				point : "x",
+				box : "0"
+			}
+			
+			
+			window.onload = function(){
+				start();
+				find();
+				document.onkeydown=function(e){
+					//上
+					if(e.keyCode==38){
+						move(-1,0);
+					}
+					//右
+					else if(e.keyCode==39){
+						move(0,1);
+					}
+					//下
+					else if(e.keyCode==40){
+						move(1,0);
+					}
+					//左
+					else if(e.keyCode==37){
+						move(0,-1);
+					}
+					if([37,38,39,40].indexOf(e.keyCode)!=-1){
+						flush();
+					}
+					if(isEnd()){
+						document.getElementById("content").innerHTML = "恭喜过关!!!!";
+						document.onkeydown = function(e){
+							return false;
+						}
+					}
+           		}
+			}
+			
+			function move(yy,xx){
+				if(map[ps.y+yy][ps.x+xx]!=mp.wall){
+					if(map[ps.y+yy][ps.x+xx]==mp.box){
+						if(map[ps.y+yy+yy][ps.x+xx+xx]!=mp.wall&&
+							map[ps.y+yy+yy][ps.x+xx+xx]!=mp.box){
+							map[ps.y+yy][ps.x+xx]=mp.person;
+							map[ps.y+yy+yy][ps.x+xx+xx]=mp.box;
+							map[ps.y][ps.x]=mp.way;
+							ps.y=ps.y+yy;
+							ps.x=ps.x+xx;
+						}
+					}else{
+						map[ps.y+yy][ps.x+xx]=mp.person;
+						if(isToPoint(ps.x,ps.y)){
+							map[ps.y][ps.x]=mp.point;
+						}else{
+							map[ps.y][ps.x]=mp.way;
+						}
+						ps.y=ps.y+yy;
+						ps.x=ps.x+xx;
+					}
+				}
+			}
+			function start(){
+				console.log("%c 恭喜你荣获彩蛋，开始推箱子之旅，请按，上下左右键进行操作 \n %c 本游戏还未来得及设置胜利机制 \n %c ",
+				"font-size:16px;color:red;",
+				"font-size:13px;",
+				"background:url('http://www.unitymain.top/001.gif') no-repeat center;background-size:120px 90px;padding-left:120px;padding-bottom: 90px;")
+				var str = '';
+				for(var i=0;i<map.length;i++){
+					for(var j=0;j<map[i].length;j++){
+						str += map[i][j]
+					}
+					str+="\n";					
+				}
+				console.log(str);
+			}
+			
+			function isEnd(){
+				for(var i=0;i<map.length;i++){
+					for(var j=0;j<map[i].length;j++){
+						if(map[i][j]==mp.person){
+							if(isToPoint(j,i)){
+								return false;
+							}
+						}
+						if(map[i][j]==mp.point){
+							for(var k=0;k<zd.length;k++){
+								if(zd[k].y==i&&zd[k].x==j){
+									return false;
+								}
+							}
+						}
+					}
+				}
+				return true;
+			}
+			
+			function flush(){
+				var str = '';
+				for(var i=0;i<map.length;i++){
+					for(var j=0;j<map[i].length;j++){
+						str += map[i][j]
+					}
+					str+="\n";					
+				}
+				console.clear();
+				console.log(str);
+			}
+			function find(){
+				for(var i=0;i<map.length;i++){
+					for(var j=0;j<map[i].length;j++){
+						if(map[i][j]==mp.person){
+							ps.y=i;
+							ps.x=j;
+						}
+						if(map[i][j]==mp.point){
+							var wz = {};
+							wz.y = i;
+							wz.x = j;
+							zd.push(wz);
+						}
+					}
+				}
+			}
+			function isToPoint(x,y){
+				for(var i=0;i<zd.length;i++){
+					if(zd[i].x==x&&zd[i].y==y){
+						return true;
+					}
+				}
+				return false;
+			}
+		</script>
+	
+
+</body></html>

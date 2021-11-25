@@ -1,0 +1,200 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+  </head>
+  <body onload="init();">
+    <canvas id="demoCanvas" width="300" height="300"></canvas>
+    <script>
+      let bWidth = document.body.scrollWidth;
+      let bHeight = document.body.scrollHeight;
+      let canvas;
+      let stage;
+      let range = 1;
+      let fans = [
+        "夏不语沟",
+        "飞火恋月",
+        "帅残戮",
+        "伊蕾娜_赫尔铂茵",
+        "菜菜的潇笙",
+        "君十四君君",
+        "平仄仄仄仄平仄仄平仄",
+        "_柏无_",
+        "深入不敷",
+        "FindMe",
+        "吾好ヒメヒナ",
+        "沐本汐",
+        "一群牛哭了",
+        "上杉の野望",
+        "梦想偏离了轨迹",
+        "幺幺切克闹huhu",
+        "zhengzheng2014",
+        "夜野的叶",
+        "熊猫梦竹君",
+        "爱学习哦1",
+        "lhb7525736",
+        "没事玩一玩电脑",
+        "风深入酒",
+        "kono天眷da",
+        "斯蒂芬干豆腐",
+        "冷酷栗子杀手",
+        "bili_79828286611",
+        "哔哩比大爷",
+        "简西窗",
+        "bili_35844839011",
+        "NoreasonUp",
+        "踩了牛奶的喵丶",
+        "月岛呀",
+        "Myprayers123",
+        "狼牙月海",
+        "唯心主义程序猿",
+        "东方求骚",
+        "22951116020_bili",
+        "阿龙网络设计",
+        "67488379556_bili",
+        "天山老杨",
+        "48387744393_bili",
+        "无心媛",
+        "贝克小探",
+        "二轮小鸟",
+        "88583627749_bili",
+        "浦岚の奇",
+        "老王家的王小白",
+        "guanzki-wang",
+        "solfWolf刘宗杰",
+      ];
+      function init() {
+        let fontArr = [
+          "黑体",
+          "宋体",
+          "微软雅黑",
+          "仿宋",
+          "楷体",
+          "幼圆",
+          "华文琥珀",
+          "华文隶书",
+          "华文新魏",
+          "方正舒体",
+        ];
+
+        canvas = document.getElementById("demoCanvas");
+
+        canvas.width = bWidth;
+        canvas.height = bHeight;
+
+        stage = new createjs.Stage("demoCanvas");
+
+        for (let i = 0; i < fans.length; i++) {
+          var text = new createjs.Text(fans[i]);
+          text.font =
+            30 +
+            Math.round(Math.random() * (50 - 30)) +
+            "px " +
+            fontArr[Math.round(Math.random() * fontArr.length)];
+          text.color = `rgb(${Math.random() * 256}, ${Math.random() *
+            256}, ${Math.random() * 256})`;
+          //text.skewX = Math.random() * 45;
+          //   text.skewY = Math.random() * 45;
+
+          text.rotation = Math.random() * 360;
+
+          text.x = Math.random() * bWidth;
+          text.y = Math.random() * bHeight;
+
+          text.velX = Math.random() * bWidth;
+          text.velY = Math.random() * bHeight;
+
+          text.velR = Math.random() * 360;
+
+          text.velSx = Math.random() * 45;
+          text.velSy = Math.random() * 45;
+          //动画添加
+          /* let tween = createjs.Tween.get(text, { loop: false })
+            .to(
+              {
+                x: Math.random() * bWidth,
+                y: Math.random() * bHeight,
+                skewX: Math.random() * 45,
+                skewY: Math.random() * 45,
+                rotation: Math.random() * 360,
+              },
+              Math.random() * 5000,
+              createjs.Ease.getPowInOut(2)
+            )
+            .call(anime(tween)); */
+
+          stage.addChild(text);
+        }
+        //计时器执行
+        createjs.Ticker.setFPS(60);
+        createjs.Ticker.addEventListener("tick", tick);
+      }
+
+      function tick(event) {
+        // iterate through all the children and move them according to their velocity:
+        for (var i = 0; i < stage.numChildren; i++) {
+          var text = stage.getChildAt(i);
+          //x 方向移动
+          if (text.x < text.velX) {
+            text.x += range;
+            if (text.x > text.velX) text.x = text.velX;
+          } else if (text.x > text.velX) {
+            text.x -= range;
+            if (text.x < text.velX) text.x = text.velX;
+          } else {
+            text.velX = Math.random() * bWidth;
+          }
+
+          //y 方向移动
+          if (text.y < text.velY) {
+            text.y += range;
+            if (text.y > text.velY) text.y = text.velY;
+          } else if (text.y > text.velY) {
+            text.y -= range;
+            if (text.y < text.velY) text.y = text.velY;
+          } else {
+            text.velY = Math.random() * bHeight;
+          }
+
+          //旋转方向移动
+          if (text.rotation < text.velR) {
+            text.rotation += range;
+            if (text.rotation > text.velR) text.rotation = text.velR;
+          } else if (text.rotation > text.velR) {
+            text.rotation -= range;
+            if (text.rotation < text.velR) text.rotation = text.velR;
+          } else {
+            text.velR = Math.random() * 360;
+          }
+
+          //旋转方向移动
+          /* if (text.skewX < text.velSx) {
+            text.skewX += range;
+            if (text.skewX > text.velSx) text.skewX = text.velSx;
+          } else if (text.skewX > text.velSx) {
+            text.skewX -= range;
+            if (text.skewX < text.velSx) text.skewX = text.velSx;
+          } else {
+            text.velSx = Math.random() * 360;
+          }
+
+          //旋转方向移动
+          if (text.skewY < text.velSy) {
+            text.skewY += range;
+            if (text.skewY > text.velSy) text.skewY = text.velSy;
+          } else if (text.skewY > text.velSy) {
+            text.skewY -= range;
+            if (text.skewY < text.velSy) text.skewY = text.velSy;
+          } else {
+            text.velSy = Math.random() * 360;
+          } */
+        }
+
+        //fpsLabel.text = Math.round(createjs.Ticker.getMeasuredFPS()) + " fps";
+
+        // draw the updates to stage:
+        stage.update(event);
+      }
+    </script>
+  </body>
+</html>

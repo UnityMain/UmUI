@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.6/dayjs.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/countup.js/2.0.8/countUp.umd.min.js"></script>
+  </head>
+  <body>
+    <div id="app" :style="{width:bodyWidth,height:bodyHeight}">
+      <h3>当前时间：{{sday}}</h3>
+      <h1 id="vip" ç></h1>
+    </div>
+    <script type="text/javascript">
+      var app = new Vue({
+        el: "#app",
+        data: {
+          bodyHeight: "",
+          allMoney: 147300,
+          subMoney: [
+            { date: "2021-11-18", amount: 880 },
+            { date: "2021-11-18", amount: 728 },
+            { date: "2021-11-19", amount: 100 },
+          ],
+          timeId: "",
+          sday: "",
+        },
+        created: function() {
+          this.bodyHeight = document.body.scrollHeight + "px";
+          this.bodyWidth = document.body.scrollWidth + "px";
+          this.updateDay();
+        },
+        mounted() {
+          let nowMoney = this.allMoney;
+          this.subMoney.forEach((element) => {
+            nowMoney -= element.amount;
+          });
+          var numAnim = new countUp.CountUp("vip", nowMoney, {
+            startVal: this.allMoney,
+          });
+          numAnim.start();
+        },
+        methods: {
+          updateDay: function() {
+            this.timeId = setInterval(() => {
+              this.sday = dayjs().format("YYYY-MM-DD HH:mm:ss");
+            }, 1000);
+          },
+        },
+      });
+    </script>
+    <style>
+      #vip {
+        font-size: 100px;
+        text-align: center;
+      }
+    </style>
+  </body>
+</html>
