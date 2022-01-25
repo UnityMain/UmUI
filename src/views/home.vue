@@ -25,6 +25,20 @@ export default {
         {
           url: "main",
           name: "主页",
+          children: [
+            {
+              url: "main",
+              name: "个人信息",
+            },
+            {
+              url: "main",
+              name: "编辑",
+            },
+            {
+              url: "main",
+              name: "入驻",
+            },
+          ],
         },
       ],
     };

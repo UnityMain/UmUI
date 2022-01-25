@@ -6,7 +6,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // 自带插件
 const webpack = require('webpack');
 // Vue加载插件
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { VueLoaderPlugin } = require('vue-loader')
 
 
 var config = require('./config');
@@ -65,7 +65,15 @@ module.exports = {
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
+        options: {
+          compilerOptions: {
+            compatConfig: {
+              MODE: 2
+            }
+          },
+          hotReload: false
+        }
       },
     ]
   },
@@ -75,7 +83,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     // 自动生成index.HTML
     new HtmlWebpackPlugin({
-      filename: "index1.html",
+      filename: "index.html",
       title: '裙下牛仔裤',
       template: './src/pages/main/index.html'
     }),
@@ -98,7 +106,7 @@ module.exports = {
       chunks: ['']
     }),
     new HtmlWebpackPlugin({
-      filename: "index.html",
+      filename: "index1.html",
       title: '裙下牛仔裤',
       template: './src/pages/blog/index.html',
       chunks: ['']

@@ -12,7 +12,22 @@
       <div class="um-item-group um-left">
         <ul class="um-h-list">
           <li v-for="(menu, index) in menuList" v-bind:key="index">
-            <router-link :to="'/' + menu.url">{{ menu.name }}</router-link>
+            <router-link
+              style="background-color:#007bff"
+              :to="'/' + menu.url"
+              >{{ menu.name }}</router-link
+            >
+            <ul class="um-child-menu" style="border:1px solid #000">
+              <li
+                v-for="(c_menu, c_index) in menu.children"
+                v-bind:key="c_index"
+                class="um-child-menu-list"
+              >
+                <router-link :to="'/' + c_menu.url">{{
+                  c_menu.name
+                }}</router-link>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>
@@ -106,14 +121,19 @@ export default {
   height: 100%;
   text-align: center;
 }
-.um-item-group ul {
-  height: 100%;
+.um-h-list {
+  position: relative;
+  min-width: 6rem;
 }
-.um-h-list > li {
-  float: left;
-  display: block;
-  height: 100%;
+.um-child-menu {
+  position: absolute;
+  display: none;
+  min-width: 6rem;
   cursor: pointer;
+}
+/* 在鼠标移上去后显示下拉菜单 */
+.um-h-list:hover .um-child-menu {
+  display: block;
 }
 .um-h-list a {
   line-height: 60px;

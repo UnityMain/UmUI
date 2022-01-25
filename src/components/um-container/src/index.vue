@@ -17,12 +17,7 @@ export default {
       } else if (this.direction === "horizontal") {
         return false;
       }
-      return this.$slots && this.$slots.default
-        ? this.$slots.default.some((vnode) => {
-            const tag = vnode.componentOptions && vnode.componentOptions.tag;
-            return tag === "um-header" || tag === "um-footer";
-          })
-        : false;
+      return true;
     },
   },
   methods: {

@@ -4,22 +4,61 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.6/dayjs.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/countup.js/2.0.8/countUp.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"></script>
   </head>
   <body>
     <div id="app" :style="{width:bodyWidth,height:bodyHeight}">
       <h3>当前时间：{{sday}}</h3>
-      <h1 id="vip" ç></h1>
+      <h1 id="vip"></h1>
+      <div id="main" style="width:100%;height: 500px;"></div>
     </div>
     <script type="text/javascript">
       var app = new Vue({
         el: "#app",
         data: {
+          option: {
+            xAxis: {
+              type: "category",
+              data: [],
+            },
+            yAxis: {
+              type: "value",
+            },
+            series: [
+              {
+                data: [],
+                type: "line",
+                smooth: true,
+              },
+            ],
+          },
           bodyHeight: "",
           allMoney: 147300,
           subMoney: [
             { date: "2021-11-18", amount: 880 },
             { date: "2021-11-18", amount: 728 },
             { date: "2021-11-19", amount: 100 },
+            { date: "2021-12-01", amount: 1375 },
+            { date: "2021-12-03", amount: 1090 },
+            { date: "2021-12-07", amount: 3679 },
+            { date: "2021-12-13", amount: 5025 },
+            { date: "2021-12-13", amount: 500 },
+            { date: "2021-12-13", amount: -10000 },
+            { date: "2021-12-13", amount: 3333 },
+            { date: "2021-12-20", amount: 1603 },
+            { date: "2022-01-03", amount: 1375 },
+            { date: "2022-01-05", amount: -7000 },
+            { date: "2022-01-05", amount: 3665 },
+            { date: "2022-01-05", amount: 604 },
+            { date: "2022-01-07", amount: 3679 },
+            { date: "2022-01-07", amount: -3000 },
+            { date: "2022-01-07", amount: 2691 },
+            { date: "2022-01-07", amount: -1000 },
+            { date: "2022-01-13", amount: 1174 },
+            { date: "2022-01-13", amount: 3000 },
+            { date: "2022-01-13", amount: 706 },
+            { date: "2022-01-18", amount: 1000 },
+            { date: "2022-01-19", amount: 880 },
           ],
           timeId: "",
           sday: "",
@@ -31,13 +70,24 @@
         },
         mounted() {
           let nowMoney = this.allMoney;
+          let amountArr = [];
+          let dateArr = [];
           this.subMoney.forEach((element) => {
             nowMoney -= element.amount;
+            amountArr.push({ value: nowMoney });
+            dateArr.push({ value: element.date });
           });
           var numAnim = new countUp.CountUp("vip", nowMoney, {
             startVal: this.allMoney,
           });
           numAnim.start();
+
+          let chartDom = document.getElementById("main");
+          let myChart = echarts.init(chartDom);
+
+          this.option.series[0].data = amountArr;
+          this.option.xAxis.data = dateArr;
+          myChart.setOption(this.option);
         },
         methods: {
           updateDay: function() {

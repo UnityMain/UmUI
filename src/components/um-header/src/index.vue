@@ -37,6 +37,5 @@ export default {
   flex-shrink: 0;
   background-color: #b3c0d1;
   color: #333;
-  line-height: 60px;
 }
 </style>

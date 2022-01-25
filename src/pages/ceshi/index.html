@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <textarea id="word"></textarea>
+    <button onclick="fanyi()">翻译</button>
+    <div id="fanyi" style="border: 1px soild black;"></div>
+    <center><h1>Hello World</h1></center>
+    <script>
+      function fanyi() {
+        let word = document.getElementById("word").value;
+        axios({
+          method: "post",
+          url: "https://www.unitymain.cn/sug",
+          data: "kw=" + word,
+        }).then(function(response) {
+          let data = response.data;
+          document.getElementById("fanyi").innerText = data.data[0].v;
+        });
+      }
+    </script>
+  </body>
+</html>
